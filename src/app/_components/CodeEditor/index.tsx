@@ -1,27 +1,23 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import styles from './CodeEditor.module.css';
+import Editor from '@monaco-editor/react';
 
-export const CodeEditor = () => {
-	const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
-	const monacoEl = useRef(null);
+const DEFAULT_COMPONENT = `
+function MiComponente(props) {
+  return (
+    <div>
+      <h1>Hola, crea tu componente de React aqui</h1>
+    </div>
+  );
+}
 
-	useEffect(() => {
-		if (monacoEl) {
-			setEditor((editor) => {
-				if (editor) return editor;
+export default MiComponente;
+`;
 
-				return monaco.editor.create(monacoEl.current!, {
-					value: ['const Component = () => {', '\tconsole.log("Hello world!");', '}'].join('\n'),
-					language: 'typescript'
-				});
-			});
-		}
+const CodeEditor = () => {
+  return (
+    <Editor height="100vh" defaultLanguage="javascript" defaultValue={DEFAULT_COMPONENT} />
+  )
+}
 
-		return () => editor?.dispose();
-	}, [monacoEl.current]);
-
-	return <div className={styles.editor} ref={monacoEl}></div>;
-};
+export default CodeEditor;
