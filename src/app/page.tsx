@@ -1,3 +1,5 @@
+import { CodeEditor } from "./_components/CodeEditor";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -6,6 +8,8 @@ export default function Home() {
           Create web components
         </h1>
       </div>
+
+      <CodeEditor />
     </main>
   )
 }
