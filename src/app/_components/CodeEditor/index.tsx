@@ -6,16 +6,26 @@ import styles from './CodeEditor.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHtml5, faCss3, faJs } from '@fortawesome/free-brands-svg-icons'
 
-const DEFAULT_COMPONENT = `
-function MiComponente(props) {
+const DEFAULT_COMPONENT = `import styles from './MyComponent.module.css';
+
+function MyComponent(props) {
   return (
-    <div>
-      <h1>Hola, crea tu componente de React aqui</h1>
+    <div className={styles.container}>
+      <h1>Hi! Create your React component here</h1>
     </div>
   );
 }
 
-export default MiComponente;
+export default MyComponent;
+`;
+
+const DEFAULT_CSS = `
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 `;
 
 const FILES = {
@@ -27,12 +37,7 @@ const FILES = {
 	'style.css': {
 	  name: 'style.css',
 	  language: 'css',
-	  value: "someCSSCodeExample",
-	},
-	'index.html': {
-	  name: 'index.html',
-	  language: 'html',
-	  value: "someHTMLCodeExample",
+	  value: DEFAULT_CSS,
 	},
   } as const;
 
@@ -45,13 +50,10 @@ const CodeEditor = () => {
   return (
     <>
     <div className={styles.topBar}>
-    <button className={styles.htmlButton} disabled={fileName === 'index.html'} onClick={() => setFileName('index.html')}>
-      <div><FontAwesomeIcon icon={faHtml5} /></div>index.html
-      </button>
       <button className={styles.cssButton} disabled={fileName === 'style.css'} onClick={() => setFileName('style.css')}>
       <div><FontAwesomeIcon icon={faCss3} /></div>style.css
       </button>
-      <button className={styles.jsButton} disabled={fileName === 'Component.jsx'} onClick={() => setFileName('script.js')}>
+      <button className={styles.jsButton} disabled={fileName === 'Component.jsx'} onClick={() => setFileName('Component.jsx')}>
       <div><FontAwesomeIcon  icon={faJs} /></div> Component.jsx
       </button>
     </div>
