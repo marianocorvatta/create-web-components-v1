@@ -18,7 +18,7 @@ function MiComponente(props) {
 export default MiComponente;
 `;
 
-const files = {
+const FILES = {
 	'Component.jsx': {
 	  name: 'Component.jsx',
 	  language: 'javascript',
@@ -36,10 +36,11 @@ const files = {
 	},
   } as const;
 
+export type FileList = keyof typeof FILES
 
 const CodeEditor = () => {
 	const [fileName, setFileName] = useState('Component.jsx');
-	const file = files[fileName];
+	const file = FILES[fileName as FileList];
 
   return (
     <>
