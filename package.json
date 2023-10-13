@@ -6,7 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "npm-run-all lint:*",
+    "lint:js": "npx eslint \"./**/*.{js,jsx,ts,tsx}\" --no-error-on-unmatched-pattern",
+    "lint:css": "npx stylelint \"./**/*.{scss,css}\" --allow-empty-input",
+    "lint:prettier": "npx prettier \"./**/*.{js,jsx,ts,tsx}\" --list-different --no-error-on-unmatched-pattern",
+    "fix": "npm-run-all fix:*",
+    "fix:css": "npm run lint:css -- --fix",
+    "fix:js": "npm run lint:js -- --fix",
+    "fix:prettier": "prettier \"./**/*.{js,jsx,ts,tsx,css}\" --write --no-error-on-unmatched-pattern"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
@@ -24,6 +31,7 @@
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "postcss": "^8",
+    "prettier": "3.0.3",
     "tailwindcss": "^3",
     "typescript": "^5"
   }
